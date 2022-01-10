@@ -1,0 +1,21 @@
+# Addin play
+# Install libwebp
+---
+- name: "Update repos cache and install libwebp package."
+  yum:
+    name: libwebp
+    state: present
+    update_cache: yes
+- name: "Remove libwebp from siteinfo."
+  include_role:
+    name: apnscp/initialize-filesystem-template
+    tasks_from: "remove-package.yml"
+  vars:
+    package: libwebp
+- name: "Install libwebp package to siteinfo."
+  include_role:
+    name: apnscp/initialize-filesystem-template
+    tasks_from: "install-package.yml"
+  vars:
+    package: libwebp
+    service: siteinfo
