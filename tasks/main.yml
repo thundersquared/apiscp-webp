@@ -1,13 +1,12 @@
 # Addin play
 # Install libwebp-tools
 ---
-- name: "Add yarn repository."
-  dnf:
-    name: "https://extras.getpagespeed.com/release-el8-latest.rpm"
-    state: present
 - name: "Update repos cache and install libwebp-tools package."
   dnf:
-    name: libwebp-tools
+    name:
+      - libwebp
+      - freeglut
+      - http://repo.okay.com.mx/centos/8/x86_64/release/okay-release-1-1.noarch.rpm
     state: present
     update_cache: yes
 - name: "Remove libwebp-tools from siteinfo."
