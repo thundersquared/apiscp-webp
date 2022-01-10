@@ -1,21 +1,25 @@
 # Addin play
-# Install libwebp
+# Install libwebp-tools
 ---
-- name: "Update repos cache and install libwebp package."
-  yum:
-    name: libwebp
+- name: "Add yarn repository."
+  dnf:
+    name: "https://extras.getpagespeed.com/release-el8-latest.rpm"
+    state: present
+- name: "Update repos cache and install libwebp-tools package."
+  dnf:
+    name: libwebp-tools
     state: present
     update_cache: yes
-- name: "Remove libwebp from siteinfo."
+- name: "Remove libwebp-tools from siteinfo."
   include_role:
     name: apnscp/initialize-filesystem-template
     tasks_from: "remove-package.yml"
   vars:
-    package: libwebp
-- name: "Install libwebp package to siteinfo."
+    package: libwebp-tools
+- name: "Install libwebp-tools package to siteinfo."
   include_role:
     name: apnscp/initialize-filesystem-template
     tasks_from: "install-package.yml"
   vars:
-    package: libwebp
+    package: libwebp-tools
     service: siteinfo
