@@ -1,14 +1,18 @@
 # Addin play
 # Install libwebp-tools
 ---
-- name: "Update repos cache and install libwebp package."
+- name: "Update repos cache and install webp required packages."
   dnf:
     name:
       - libwebp
       - freeglut
-      - http://repo.okay.com.mx/centos/8/x86_64/release/libwebp-tools-1.0.0-1.el8.x86_64.rpm
     state: present
     update_cache: yes
+- name: "Update repos cache and install libwebp-tools package."
+  dnf:
+    name: "http://repo.okay.com.mx/centos/8/x86_64/release/libwebp-tools-1.0.0-1.el8.x86_64.rpm"
+    state: present
+    disable_gpg_check: yes
 - name: "Remove libwebp from siteinfo."
   include_role:
     name: apnscp/initialize-filesystem-template
